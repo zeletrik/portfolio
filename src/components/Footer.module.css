@@ -1,0 +1,31 @@
+.footer {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-xl) 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.socials {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.link {
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+}
+
+.link:hover {
+    color: var(--text-accent);
+}
+
+.copyright {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
