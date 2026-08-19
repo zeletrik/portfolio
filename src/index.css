@@ -1,20 +1,19 @@
 :root {
-  --bg-primary: #050505;
-  --bg-secondary: #0f0f0f;
-  --bg-card: rgba(20, 20, 20, 0.6);
-  --bg-card-hover: rgba(30, 30, 30, 0.8);
+  --bg-primary: #0b0d10;
+  --bg-secondary: #12151a;
+  --bg-card: rgba(22, 26, 32, 0.6);
+  --bg-card-hover: rgba(30, 35, 42, 0.8);
 
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-accent: #00ff9d;
-  /* Neon Green for Backend */
-  --text-accent-2: #bd00ff;
-  /* Purple for AI */
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-accent: #34d399;
+  --accent-soft: rgba(52, 211, 153, 0.08);
+  --accent-border: rgba(52, 211, 153, 0.2);
 
   --border-color: rgba(255, 255, 255, 0.1);
   --border-hover: rgba(255, 255, 255, 0.2);
 
-  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-main: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
 
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
@@ -26,6 +25,15 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Keep anchored sections clear of the sticky header */
+[id] {
+  scroll-margin-top: 4.5rem;
 }
 
 body {
@@ -77,7 +85,7 @@ h2 {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--text-accent), var(--text-accent-2));
+  background: linear-gradient(135deg, var(--text-accent), #6ee7b7);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

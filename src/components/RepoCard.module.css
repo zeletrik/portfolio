@@ -73,8 +73,8 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: var(--text-accent-2);
-    /* Default color, could be dynamic */
+    background-color: rgba(255, 255, 255, 0.3);
+    /* Fallback — overridden inline per language */
 }
 
 .stat {

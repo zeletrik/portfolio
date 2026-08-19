@@ -3,7 +3,7 @@ import styles from './Hero.module.css';
 
 export function Hero() {
     return (
-        <section className={styles.hero}>
+        <section className={styles.hero} id="top">
             <div className={styles.content}>
                 <div className={styles.badge}>
                     <Terminal size={16} />
@@ -15,7 +15,7 @@ export function Hero() {
                 </h1>
 
                 <h2 className={styles.subtitle}>
-                    Staff Backend Software Engineer
+                    Principal Backend Software Engineer
                 </h2>
 
                 <p className={styles.description}>

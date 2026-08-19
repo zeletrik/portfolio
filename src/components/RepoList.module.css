@@ -18,9 +18,43 @@
     gap: var(--spacing-lg);
 }
 
-.loading {
+.error {
     text-align: center;
     padding: var(--spacing-xl);
     color: var(--text-secondary);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+}
+
+.error a {
+    color: var(--text-accent);
+    text-decoration: underline;
+}
+
+/* Skeleton loading cards */
+.skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    min-height: 180px;
+}
+
+.skeletonLine {
+    height: 0.9rem;
+    border-radius: 0.45rem;
+    background: rgba(255, 255, 255, 0.06);
+    animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
 }

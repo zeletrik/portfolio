@@ -34,8 +34,7 @@ export function RepoCard({ repo }: RepoCardProps) {
                     </span>
                     <span className={styles.stat}>
                         <GitFork size={14} />
-                        {/* Assuming forks count is available in full response but we defined minimal interface. 
-                Let's stick to what we have or just show stars. */}
+                        {repo.forks_count}
                     </span>
                 </div>
 

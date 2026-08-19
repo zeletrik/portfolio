@@ -5,23 +5,23 @@ const skillCategories = [
     {
         title: 'Backend Development',
         icon: <Server size={24} />,
-        skills: ['Kotlin', 'Java', 'Spring Boot', 'Spring Framework', 'Microservices', 'REST APIs', 'Reactive']
+        skills: ['Kotlin', 'Kotlin Coroutines', 'Java', 'Spring Boot', 'Spring Framework', 'Microservices', 'REST APIs', 'Reactive']
     },
     {
         title: 'AI & Data',
         icon: <Cpu size={24} />,
-        skills: ['Python', 'LangGraph', 'RAG', 'LLM Integration', 'Spring AI', 'Vector Databases']
+        skills: ['Python', 'LangGraph', 'RAG', 'LLM Integration', 'Spring AI', 'Vector Databases', 'Koog', 'LLMOps']
     },
     {
         title: 'Cloud & DevOps',
         icon: <Cloud size={24} />,
-        skills: ['AWS', 'Kubernetes', 'Docker', 'Terraform', 'HELM', 'CI/CD Pipelines', 'Monitoring']
+        skills: ['AWS', 'Kubernetes', 'Docker', 'Terraform', 'HELM', 'CI/CD Pipelines', 'Monitoring', 'OpenTelemetry']
     }
 ];
 
 export function Skills() {
     return (
-        <section className={styles.section}>
+        <section className={styles.section} id="skills">
             <h2 className={styles.title}>Technical Expertise</h2>
             <div className={styles.grid}>
                 {skillCategories.map((category, index) => (

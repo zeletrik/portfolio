@@ -1,0 +1,147 @@
+.section {
+    padding: var(--spacing-xl) 0;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    background: linear-gradient(to right, #fff, #888);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    padding-left: 3rem;
+}
+
+/* The vertical line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 1.05rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 1px;
+    background: var(--border-color);
+}
+
+.item {
+    position: relative;
+}
+
+.marker {
+    position: absolute;
+    left: -3rem;
+    top: 1.25rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--text-accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-border);
+}
+
+.card {
+    padding: 1.5rem 2rem;
+    border-radius: 1rem;
+}
+
+.companyHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-sm);
+}
+
+.company {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.location {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.roles {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.role+.role {
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--border-color);
+}
+
+.roleHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.roleTitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-accent);
+    margin: 0;
+}
+
+.period {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.highlights {
+    margin: var(--spacing-sm) 0 0;
+    padding-left: 1.1rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.tech {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .timeline {
+        padding-left: 2.5rem;
+    }
+
+    .companyHeader,
+    .roleHeader {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+}
