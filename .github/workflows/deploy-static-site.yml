@@ -1,0 +1,122 @@
+name: Deploy static site
+
+# Shared deploy for the zeletrik.eu sites (portfolio, Shiso, Beancodex). Each repo calls it
+# from its own deploy.yml. AWS access comes from the caller repo's `production` environment:
+# AWS_ROLE_ARN, AWS_REGION and S3_BUCKET variables. See the portfolio README, "Deployment".
+on:
+  workflow_call:
+    inputs:
+      build-command:
+        description: Runs after `npm ci` when set (e.g. "npm run build"); leave empty for prebuilt sites
+        type: string
+        default: ''
+      source-dir:
+        description: Folder whose contents become the bucket root
+        type: string
+        required: true
+      hashed-assets-dir:
+        description: Sub-folder of content-hashed files, safe to cache for a year; empty if none
+        type: string
+        default: ''
+      site-url:
+        description: Public URL checked once the upload finishes
+        type: string
+        required: true
+      dry-run:
+        description: Print what would change without touching the bucket
+        type: boolean
+        default: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      id-token: write
+    # One deploy per site at a time; a second run waits instead of racing the first
+    concurrency:
+      group: deploy-${{ github.repository }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        if: inputs.build-command != ''
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Build
+        if: inputs.build-command != ''
+        env:
+          BUILD_COMMAND: ${{ inputs.build-command }}
+        run: |
+          npm ci
+          bash -c "$BUILD_COMMAND"
+
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+          role-session-name: ${{ github.event.repository.name }}-deploy
+
+      - name: Upload to S3
+        env:
+          BUCKET: ${{ vars.S3_BUCKET }}
+          SRC: ${{ inputs.source-dir }}
+          HASHED: ${{ inputs.hashed-assets-dir }}
+          DRY_RUN: ${{ inputs.dry-run }}
+        run: |
+          set -euo pipefail
+
+          # One pass lists exactly what would be uploaded and deleted
+          if [ "$DRY_RUN" = "true" ]; then
+            aws s3 sync "$SRC" "s3://$BUCKET" --delete --dryrun
+            exit 0
+          fi
+
+          # 1. Hashed assets: a new build gets new names, so they can be cached for a year
+          skip_hashed=()
+          if [ -n "$HASHED" ]; then
+            aws s3 sync "$SRC/$HASHED" "s3://$BUCKET/$HASHED" \
+              --cache-control "public, max-age=31536000, immutable"
+            skip_hashed=(--exclude "$HASHED/*")
+          fi
+
+          # 2. Everything else except HTML: stable names, so only a short cache
+          aws s3 sync "$SRC" "s3://$BUCKET" --exclude "*.html" "${skip_hashed[@]}" \
+            --cache-control "public, max-age=3600"
+
+          # 3. HTML last, so a page never references a file that isn't uploaded yet
+          aws s3 sync "$SRC" "s3://$BUCKET" --exclude "*" --include "*.html" \
+            --cache-control "no-cache"
+
+          # 4. Remove files the new build no longer has. Everything above was just
+          #    uploaded, so this pass only deletes.
+          aws s3 sync "$SRC" "s3://$BUCKET" --delete
+
+      - name: Check the live site
+        if: ${{ !inputs.dry-run }}
+        env:
+          SITE_URL: ${{ inputs.site-url }}
+          SRC: ${{ inputs.source-dir }}
+        run: |
+          set -euo pipefail
+          # A built site references its entry bundle by a content hash; the live page must
+          # carry this build's one. Prebuilt sites only need to answer. (Cloudflare can rewrite
+          # HTML, e.g. obfuscating emails, so the files can't be compared byte for byte.)
+          marker=$(grep -o '/assets/[^"]*\.js' "$SRC/index.html" | head -n 1 || true)
+          for attempt in 1 2 3 4 5; do
+            if page=$(curl -fsSL "$SITE_URL"); then
+              if [ -z "$marker" ] || grep -qF "$marker" <<<"$page"; then
+                echo "$SITE_URL is serving this deploy${marker:+ ($marker)}"
+                exit 0
+              fi
+            fi
+            sleep 5
+          done
+          echo "::error::$SITE_URL is not serving this deploy${marker:+ (expected $marker)}"
+          exit 1

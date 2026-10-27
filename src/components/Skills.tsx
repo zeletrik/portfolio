@@ -1,21 +1,21 @@
-import { Server, Cpu, Cloud } from 'lucide-react';
+import { Server, Bot, Cloud } from 'lucide-react';
 import styles from './Skills.module.css';
 
 const skillCategories = [
     {
         title: 'Backend Development',
         icon: <Server size={24} />,
-        skills: ['Kotlin', 'Kotlin Coroutines', 'Java', 'Spring Boot', 'Spring Framework', 'Microservices', 'REST APIs', 'Reactive']
+        skills: ['Kotlin', 'Kotlin Coroutines', 'Java', 'Spring Boot', 'Spring WebFlux', 'Spring Modulith', 'Microservices', 'Library & API design']
     },
     {
-        title: 'AI & Data',
-        icon: <Cpu size={24} />,
-        skills: ['Python', 'LangGraph', 'RAG', 'LLM Integration', 'Spring AI', 'Vector Databases', 'Koog', 'LLMOps']
+        title: 'Agentic AI',
+        icon: <Bot size={24} />,
+        skills: ['Spring AI', 'Koog', 'MCP', 'RAG', 'Vector Databases', 'Guardrails', 'LangGraph', 'Python', 'LLMOps']
     },
     {
         title: 'Cloud & DevOps',
         icon: <Cloud size={24} />,
-        skills: ['AWS', 'Kubernetes', 'Docker', 'Terraform', 'HELM', 'CI/CD Pipelines', 'Monitoring', 'OpenTelemetry']
+        skills: ['AWS', 'Kubernetes', 'Docker', 'Terraform', 'Helm', 'CI/CD Pipelines', 'Monitoring', 'OpenTelemetry']
     }
 ];
 

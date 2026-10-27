@@ -18,16 +18,16 @@ const experience: Company[] = [
   {
     company: "Uberall",
     location: "Remote",
-    stack: ["Kotlin", "Spring", "Python", "LangGraph", "AWS", "Kubernetes"],
+    stack: ["Kotlin", "Spring Boot", "Spring AI", "MCP", "Python", "LangGraph", "AWS", "Kubernetes"],
     roles: [
       {
         title: "Principal Software Engineer",
         period: "Aug 2026 — Present",
         highlights: [
-          "Steering long-term technical vision and architectural standards to build resilient, ultra-performant backend systems across our AWS ecosystem.",
-          "Establishing security frameworks, threat modeling and governance for production AI orchestration — secure LLM integrations, robust guardrails and enterprise-grade data privacy.",
-          "Architecting high-throughput, fault-tolerant microservices with a focus on platform reliability, low-latency execution and system elasticity.",
-          "Empowering engineers through technical mentorship, fostering a culture of operational excellence, and bridging deep technical strategy with business goals.",
+          "Set the technical direction for the Kotlin and Spring Boot starters and shared libraries that Uberall teams build LLM-powered agents on.",
+          "Design the agent building blocks (MCP integration, message routing, memory handling and guardrails) so product teams can ship agentic features without rebuilding the plumbing.",
+          "Own security and governance for production AI: threat modelling, guardrails and data-privacy controls for LLM integrations.",
+          "Keep the services underneath fast and fault-tolerant on AWS and Kubernetes, and mentor engineers on the patterns and API standards the platform depends on.",
         ],
       },
       {

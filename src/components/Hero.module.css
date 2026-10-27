@@ -124,9 +124,16 @@
     color: var(--accent);
 }
 
-.arrow {
+.year {
     flex-shrink: 0;
     margin-left: auto;
+    color: var(--label-2);
+    font-size: 0.8125rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.arrow {
+    flex-shrink: 0;
     color: var(--label-2);
 }
 

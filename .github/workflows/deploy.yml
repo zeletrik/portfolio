@@ -1,0 +1,24 @@
+name: Deploy
+
+# Manual only: Actions → Deploy → Run workflow (from main)
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: Show what would change without uploading
+        type: boolean
+        default: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/deploy-static-site.yml
+    permissions:
+      contents: read
+      id-token: write
+    with:
+      build-command: npm run lint && npm run build
+      source-dir: dist
+      hashed-assets-dir: assets
+      site-url: https://www.zeletrik.eu/
+      dry-run: ${{ inputs.dry-run }}

@@ -1,0 +1,60 @@
+/* Deliberately quiet: a footnote under the featured projects, not a showcase */
+.aside {
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+.heading {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--label-2);
+    margin-bottom: 0.625rem;
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    font-size: 0.9375rem;
+    letter-spacing: -0.009em;
+}
+
+.item {
+    text-wrap: balance;
+}
+
+.name,
+.link {
+    font-weight: 600;
+    color: var(--label);
+}
+
+.link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.125rem;
+    color: var(--accent);
+    transition: opacity 0.2s ease;
+}
+
+.link:active {
+    opacity: 0.5;
+    transition-duration: 0s;
+}
+
+.blurb {
+    color: var(--label-2);
+}
+
+.soon {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.0625rem 0.5rem;
+    border-radius: 999px;
+    background: var(--fill);
+    color: var(--label-2);
+    font-size: 0.75rem;
+}

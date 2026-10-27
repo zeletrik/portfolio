@@ -1,4 +1,6 @@
-/* Apple system colours. Light is the base; dark overrides below. */
+/* Apple system colours. Light is the base; dark overrides below.
+   The app sites (Shiso, Beancodex) mirror the non-colour tokens and components in their
+   websites/initial/assets/zeletrik-family.css — keep them in step when changing these. */
 :root {
   color-scheme: light dark;
 

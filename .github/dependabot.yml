@@ -1,0 +1,7 @@
+version: 2
+updates:
+  # Workflows pin actions to commit SHAs; this keeps those pins moving with new releases
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

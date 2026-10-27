@@ -11,14 +11,12 @@ export interface Repo {
 }
 
 // Curated, ordered list of repos to feature. Edit this to change what shows up
-// (and in which order) — anything not listed here is hidden.
-const FEATURED_REPOS = [
+// (and in which order) — anything not listed here is hidden. Only recent, finished,
+// documented work; a multiple of three fills the desktop grid.
+export const FEATURED_REPOS = [
+    'maven-mcp-server',
     'kotlin-spring-ai-rag-demo',
-    'cloud-native-intro',
-    'aws-lambda-kotlin-demo',
-    'efk-local-m1',
-    'HRecSys',
-    'diabetes-diary',
+    'beanbook',
 ];
 
 export async function fetchRepos(username: string): Promise<Repo[]> {
@@ -39,5 +37,5 @@ export async function fetchRepos(username: string): Promise<Repo[]> {
     return data
         .filter(repo => !repo.fork)
         .sort((a, b) => b.stargazers_count - a.stargazers_count)
-        .slice(0, 6);
+        .slice(0, FEATURED_REPOS.length);
 }

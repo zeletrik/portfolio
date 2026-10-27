@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { fetchRepos, type Repo } from '../services/github';
+import { FEATURED_REPOS, fetchRepos, type Repo } from '../services/github';
 import { RepoCard } from './RepoCard';
+import { SideProjects } from './SideProjects';
 import styles from './RepoList.module.css';
 
 type Status = 'loading' | 'ready' | 'error';
@@ -32,7 +33,7 @@ export function RepoList() {
 
             {status === 'loading' && (
                 <div className={styles.grid}>
-                    {Array.from({ length: 6 }, (_, i) => (
+                    {Array.from({ length: FEATURED_REPOS.length }, (_, i) => (
                         <div key={i} className={`${styles.skeleton} surface`}>
                             <div className={styles.skeletonLine} style={{ width: '50%' }} />
                             <div className={styles.skeletonLine} style={{ width: '90%' }} />
@@ -57,6 +58,8 @@ export function RepoList() {
                     ))}
                 </div>
             )}
+
+            <SideProjects />
         </section>
     );
 }
