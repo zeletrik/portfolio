@@ -23,15 +23,15 @@ export function Footer() {
         <footer className={styles.footer} id="contact">
             <div className={styles.content}>
                 <div className={styles.socials}>
-                    <a href="https://github.com/zeletrik" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                        <GithubIcon size={24} />
+                    <a href="https://github.com/zeletrik" target="_blank" rel="noopener noreferrer" className={styles.link} aria-label="GitHub">
+                        <GithubIcon size={20} />
                     </a>
                     {/* Placeholder links for LinkedIn/Email as they weren't provided, but good to have structure */}
-                    <a href="https://linkedin.com/in/zeletrik" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                        <LinkedinIcon size={24} />
+                    <a href="https://linkedin.com/in/zeletrik" target="_blank" rel="noopener noreferrer" className={styles.link} aria-label="LinkedIn">
+                        <LinkedinIcon size={20} />
                     </a>
-                    <a href="mailto:hello@zeletrik.eu" target="_blank" rel="noopener noreferrer" className={styles.link}>
-                        <Mail size={24} />
+                    <a href="mailto:hello@zeletrik.eu" className={styles.link} aria-label="Email">
+                        <Mail size={20} aria-hidden="true" />
                     </a>
                 </div>
                 <p className={styles.copyright}>

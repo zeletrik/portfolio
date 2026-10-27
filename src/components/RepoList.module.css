@@ -1,49 +1,69 @@
 .section {
-    padding: var(--spacing-xl) 0;
+    padding: var(--section-space) 0;
 }
 
 .title {
-    font-size: 2.5rem;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: 2.5rem;
     text-align: center;
-    background: linear-gradient(to right, #fff, #888);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    gap: 1.25rem;
+}
+
+/* Phones: a horizontal shelf that bleeds to the screen edges, like the App Store.
+   Native scroll-snap keeps the platform's own momentum and rubber-banding. */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: min(85%, 22rem);
+        gap: 0.75rem;
+        margin: 0 calc(-1 * var(--inset-right)) 0 calc(-1 * var(--inset-left));
+        padding: 0.25rem var(--inset-right) 0.75rem var(--inset-left);
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: var(--inset-left) var(--inset-right);
+        scrollbar-width: none;
+    }
+
+    .grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .grid > * {
+        scroll-snap-align: start;
+    }
 }
 
 .error {
     text-align: center;
-    padding: var(--spacing-xl);
-    color: var(--text-secondary);
-    font-size: 1.1rem;
+    padding: 2rem 0;
+    color: var(--label-2);
 }
 
 .error a {
-    color: var(--text-accent);
+    color: var(--accent);
     text-decoration: underline;
+    text-underline-offset: 0.15em;
 }
 
 /* Skeleton loading cards */
 .skeleton {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: 1rem;
     padding: 1.5rem;
-    border-radius: 1rem;
     min-height: 180px;
 }
 
 .skeletonLine {
     height: 0.9rem;
     border-radius: 0.45rem;
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--fill);
     animation: pulse 1.4s ease-in-out infinite;
 }
 
@@ -56,5 +76,11 @@
 
     50% {
         opacity: 0.4;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skeletonLine {
+        animation: none;
     }
 }

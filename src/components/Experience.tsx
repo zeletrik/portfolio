@@ -111,7 +111,7 @@ export function Experience() {
             <div className={styles.marker}>
               <Briefcase size={16} />
             </div>
-            <div className={`${styles.card} glass`}>
+            <div className={`${styles.card} surface`}>
               <div className={styles.companyHeader}>
                 <span className={styles.company}>{entry.company}</span>
                 <span className={styles.location}>{entry.location}</span>

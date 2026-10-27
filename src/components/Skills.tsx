@@ -25,7 +25,7 @@ export function Skills() {
             <h2 className={styles.title}>Technical Expertise</h2>
             <div className={styles.grid}>
                 {skillCategories.map((category, index) => (
-                    <div key={index} className={`${styles.card} glass`}>
+                    <div key={index} className={`${styles.card} surface`}>
                         <div className={styles.header}>
                             <div className={styles.iconWrapper}>{category.icon}</div>
                             <h3 className={styles.categoryTitle}>{category.title}</h3>

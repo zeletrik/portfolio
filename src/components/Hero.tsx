@@ -1,4 +1,4 @@
-import { Terminal, Server, Cloud } from 'lucide-react';
+import { Terminal, Server, Cloud, ArrowUpRight } from 'lucide-react';
 import styles from './Hero.module.css';
 
 export function Hero() {
@@ -11,7 +11,7 @@ export function Hero() {
                 </div>
 
                 <h1 className={styles.title}>
-                    Patrik <span className="text-gradient">Zelena</span>
+                    Patrik <span className={styles.accent}>Zelena</span>
                 </h1>
 
                 <h2 className={styles.subtitle}>
@@ -25,17 +25,15 @@ export function Hero() {
                 </p>
 
                 <div className={styles.certs}>
-                    <a href="https://www.credly.com/badges/199e645d-3012-4d55-b35e-cfe5a152eb0e" target="_blank" rel="noopener noreferrer">
-                        <div className={`${styles.certItem} glass`}>
-                            <Cloud className={styles.icon} />
-                            <span>AWS Certified Solutions Architect</span>
-                        </div>
+                    <a href="https://www.credly.com/badges/199e645d-3012-4d55-b35e-cfe5a152eb0e" target="_blank" rel="noopener noreferrer" className={`${styles.certItem} surface`}>
+                        <Cloud className={styles.icon} />
+                        <span>AWS Certified Solutions Architect</span>
+                        <ArrowUpRight size={16} className={styles.arrow} aria-hidden="true" />
                     </a>
-                    <a href="https://www.credly.com/badges/4f31f18f-fbaa-4150-a3b8-27e5f3db8167" target="_blank" rel="noopener noreferrer">
-                        <div className={`${styles.certItem} glass`}>
-                            <Server className={styles.icon} />
-                            <span>CKAD: Kubernetes Application Developer</span>
-                        </div>
+                    <a href="https://www.credly.com/badges/4f31f18f-fbaa-4150-a3b8-27e5f3db8167" target="_blank" rel="noopener noreferrer" className={`${styles.certItem} surface`}>
+                        <Server className={styles.icon} />
+                        <span>CKAD: Kubernetes Application Developer</span>
+                        <ArrowUpRight size={16} className={styles.arrow} aria-hidden="true" />
                     </a>
                 </div>
             </div>
@@ -43,7 +41,6 @@ export function Hero() {
             <div className={styles.visual}>
                 {/* Abstract decorative element */}
                 <div className={styles.glow} />
-                <div className={styles.grid} />
             </div>
         </section>
     );

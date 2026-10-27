@@ -33,7 +33,7 @@ export function RepoList() {
             {status === 'loading' && (
                 <div className={styles.grid}>
                     {Array.from({ length: 6 }, (_, i) => (
-                        <div key={i} className={`${styles.skeleton} glass`}>
+                        <div key={i} className={`${styles.skeleton} surface`}>
                             <div className={styles.skeletonLine} style={{ width: '50%' }} />
                             <div className={styles.skeletonLine} style={{ width: '90%' }} />
                             <div className={styles.skeletonLine} style={{ width: '75%' }} />
